@@ -1,6 +1,6 @@
 {
   "name": "generator-nodeserver",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generates a nodeserver project.",
   "main": "generators/app/index.js",
   "license": "Apache-2.0",
@@ -15,6 +15,7 @@
     "handlebars": "^4.0.10",
     "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",
+    "log4js": "^2.2.3",
     "yeoman-generator": "^1.1.0",
     "generator-ibm-cloud-enablement": "^0.0.68"
   },
