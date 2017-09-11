@@ -1,0 +1,14 @@
+env:
+  node: true
+  es6: true
+  mocha: true
+
+rules:
+  strict: 2
+  no-var: 2
+  no-console: 0
+  indent: ["error", 2]
+
+extends: eslint:recommended
+
+plugins: [ejs]
