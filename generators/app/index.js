@@ -26,7 +26,10 @@ module.exports = class extends Generator {
 
   initializing() {
     this.composeWith(require.resolve('../core'), this.opts);
-    if (process.env.YO_SUB_GEN_MODE === 'development') {
+    if (process.env.YO_SUB_GEN_MODE === 'global') {
+      this.composeWith('ibm-cloud-enablement', this.opts);
+    }
+    else { 
       const modDirName = __dirname + '/../../node_modules';
       this.composeWith(
         path.join(
@@ -36,10 +39,7 @@ module.exports = class extends Generator {
           'app'
         ),
         this.opts
-      );
-    }
-    else { 
-      this.composeWith('ibm-cloud-enablement', this.opts);
+      );  
     }
   }
 
