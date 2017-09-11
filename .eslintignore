@@ -1,0 +1,6 @@
+node_modules/
+# If eslint goes into this dir it will read package.json as a config file
+# We either rename the package.json template, or we don't lint this dir
+generators/app/templates/
+generators/core/templates/
+coverage/

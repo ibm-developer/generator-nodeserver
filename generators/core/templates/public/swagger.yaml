@@ -1,0 +1,31 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.1"
+  title: <%= bluemix.name || spec.appname -%> API
+
+consumes:
+  - text/plain
+
+produces:
+  - application/json
+
+paths:
+  /health:
+    get:
+      operationId: get
+      description: Get health status of <%= bluemix.name || spec.appname -%> 
+      responses:
+        200:
+          description: "Health check response"
+          schema:
+            $ref: "#/definitions/healthResponse"
+          examples:
+            application/json: { "status": "UP"}
+
+definitions:
+  healthResponse:
+    type: "object"
+    properties:
+      status:
+        type: "string"

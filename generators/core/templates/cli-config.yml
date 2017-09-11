@@ -1,0 +1,29 @@
+version : 0.0.3
+
+container-name-run : "<%= bluemix.name.toLowerCase() %>-express-run"
+container-name-tools : "<%= bluemix.name.toLowerCase() %>-express-tools"
+
+host-path-run : .
+host-path-tools : .
+
+container-path-run : "/app"
+container-path-tools : "/app"
+
+container-port-map : "3000:3000"
+container-port-map-debug : "5858:5858"
+
+dockerfile-run : "Dockerfile"
+dockerfile-tools : "Dockerfile-tools"
+
+image-name-run : "<%= bluemix.name.toLowerCase() %>-express-run"
+image-name-tools : "<%= bluemix.name.toLowerCase() %>-express-tools"
+
+build-cmd-run : "npm install"
+test-cmd : "npm run test"
+build-cmd-debug : "npm install"
+
+run-cmd : ""
+debug-cmd : "npm run debug"
+stop-cmd : "npm stop"
+
+chart-path: "chart/<%= bluemix.name.toLowerCase()%>"
