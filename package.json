@@ -22,7 +22,8 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "eslint .",
-    "mocha": "nyc mocha"
+    "mocha": "nyc mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "eslint": "^3.1.1",
