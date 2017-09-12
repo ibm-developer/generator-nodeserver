@@ -21,7 +21,7 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     // generate only for Node.js apps
-    this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {}};
+    this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'MS'}};
   }
 
   initializing() {
