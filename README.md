@@ -26,6 +26,22 @@
 [img-codacy]: https://api.codacy.com/project/badge/Grade/a5893a4622094dc8920c8a372a8d3588?branch=master
 [url-codacy]: https://www.codacy.com/app/ibm-developer/generator-nodeserver
 
+
+![](https://i.pinimg.com/564x/f9/28/e2/f928e27b6513d0d9c25a1b80293b12d1.jpg)
+
+## Current State
+
+This is an early version of the nodeserver generator.  It produces a simple Expressed-based node.js server that serves up a trivial page and exposes a health endpoint (/health).  Additionally, configuration files are generated for the following tools and deployment environments:
+
+1. Docker
+2. Kubernetes/Helm
+3. Cloud Foundry
+4. [IBM Cloud Developer Tools](https://github.com/IBM-Bluemix/ibm-cloud-developer-tools)
+
+#### Prompting 
+
+The generator presently prompts only for project name and docker registry (i.e. target for IDT's 'bx dev deploy' command).  Additional prompting is planned for IBM Cloud services, including Cloudant, ObjectStore, AppID, and more. 
+
 ## Pre-requisites
 
 Install [Yeoman](http://yeoman.io)
