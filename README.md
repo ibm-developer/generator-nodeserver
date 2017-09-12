@@ -1,4 +1,4 @@
-# IBM Cloud Enablement Generator
+# NodeServer Generator
 
 [![Bluemix powered][img-bluemix-powered]][url-bluemix]
 [![Travis][img-travis-master]][url-travis-master]
