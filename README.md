@@ -85,5 +85,5 @@ Once you are finished with your changes, run `npm test` to make sure all tests p
 
 Do a pull request against `development`, make sure the build passes. A team member will review and merge your pull request. 
 Once merged to development, the version will be auto-incremented.
-Do a pull request against master, once that PR is reviewed and merged, a new version will be published.
+Do a pull request against master, once that PR is reviewed and merged, a new version will be published to npm.
 
