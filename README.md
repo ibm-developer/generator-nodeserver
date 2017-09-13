@@ -27,8 +27,6 @@
 [url-codacy]: https://www.codacy.com/app/ibm-developer/generator-nodeserver
 
 
-![](https://i.pinimg.com/564x/f9/28/e2/f928e27b6513d0d9c25a1b80293b12d1.jpg)
-
 ## Current State
 
 This is an early version of the nodeserver generator.  It produces a simple Expressed-based node.js server that serves up a trivial page and exposes a health endpoint (/health).  Additionally, configuration files are generated for the following tools and deployment environments:
