@@ -12,12 +12,12 @@
   ],
   "dependencies": {
     "fs-extra": "^2.0.0",
+    "generator-ibm-cloud-enablement": "^0.0.77",
     "handlebars": "^4.0.10",
     "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",
     "log4js": "^2.2.3",
-    "yeoman-generator": "^1.1.0",
-    "generator-ibm-cloud-enablement": "^0.0.68"
+    "yeoman-generator": "^1.1.0"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha",

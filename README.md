@@ -17,7 +17,7 @@
 [img-npm-downloads-monthly]: https://img.shields.io/npm/dm/generator-nodeserver.svg
 [img-npm-downloads-total]: https://img.shields.io/npm/dt/generator-nodeserver.svg
 
-[img-travis-master]: https://travis-ci.org/ibm-developer/generator-nodeserver.svg?branch=master
+[img-travis-master]: https://travis-ci.org/ibm-developer/generator-nodeserver.svg?branch=development
 [url-travis-master]: https://travis-ci.org/ibm-developer/generator-nodeserver/branches
 
 [img-coveralls-master]: https://coveralls.io/repos/github/ibm-developer/generator-nodeserver/badge.svg
