@@ -1,4 +1,4 @@
-require('appmetrics').monitor();
+require('appmetrics-dash').attach();
 const appName = require('./../package').name;
 const express = require('express');
 const log4js = require('log4js');
