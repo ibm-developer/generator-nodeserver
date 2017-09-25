@@ -38,7 +38,9 @@ This is an early version of the nodeserver generator.  It produces a simple Expr
 
 #### Prompting 
 
-The generator presently prompts only for project name and docker registry (i.e. target for IDT's 'bx dev deploy' command).  Additional prompting is planned for Swagger as input to direct code generation and IBM Cloud services, including Cloudant, ObjectStore,AppID, and more. 
+The generator presently prompts for project name and optional swagger json input to direct code generation. 
+
+Additional prompting is planned for adding IBM Cloud services, including Cloudant, ObjectStore,AppID, and more. 
 
 ## Pre-requisites
 

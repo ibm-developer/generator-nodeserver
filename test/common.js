@@ -18,6 +18,7 @@
 // Paths to the generated files, if you move files around change paths here.
 exports.file = {
   gitignore: '.gitignore',
+  dockerignore: '.dockerignore',
   package_json: 'package.json',
   README_md: 'README.md',
   server_js: 'server/server.js',
@@ -26,6 +27,21 @@ exports.file = {
   health: 'server/routers/health.js',
   index_router: 'server/routers/index.js',
   public: 'server/routers/public.js',
+  index_service: 'server/services/index.js',
+  cliconfig: 'cli-config.yml'
+};
+
+exports.fileSwagger = {
+  gitignore: '.gitignore',
+  dockerignore: '.dockerignore',
+  package_json: 'package.json',
+  README_md: 'README.md',
+  server_js: 'server/server.js',
+  persons_js: "server/routers/persons.js",
+  dinosaurs_js: "server/routers/dinosaurs.js",
+  local: 'server/config/local.json',
+  health: 'server/routers/health.js',
+  index_router: 'server/routers/index.js',
   index_service: 'server/services/index.js',
   cliconfig: 'cli-config.yml'
 };
