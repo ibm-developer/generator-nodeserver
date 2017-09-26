@@ -1,0 +1,39 @@
+{
+  "name": "generator-nodeserver",
+  "version": "0.0.11",
+  "description": "Generates a nodeserver project.",
+  "main": "generators/app/index.js",
+  "license": "Apache-2.0",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "fs-extra": "^2.0.0",
+    "generator-ibm-core-node-express": "^0.0.57",
+    "generator-ibm-cloud-enablement": "^0.0.77",
+    "handlebars": "^4.0.10",
+    "js-yaml": "^3.9.0",
+    "lodash": "^4.17.4",
+    "log4js": "^2.2.3",
+    "yeoman-generator": "^1.1.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run mocha",
+    "lint": "eslint .",
+    "mocha": "nyc mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^3.1.1",
+    "eslint-plugin-ejs": "0.0.2",
+    "mocha": "^3.2.0",
+    "nyc": "^10.3.0",
+    "yeoman-assert": "^2.2.2",
+    "yeoman-test": "^1.6.0"
+  },
+  "repository": "https://github.com/ibm-developer/generator-nodeserver"
+}

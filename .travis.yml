@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+- '8'
+
+script: npm test && npm run coveralls && ./npm_patch.sh
+
+branches:
+  only:
+    - development
+    - master
+
+notifications:
+  slack: 
+    rooms:
+      - $SLACK_ARF_DEVOPS
+
+deploy:
+  provider: npm
+  email: $NPM_EMAIL
+  api_key: $NPM_TOKEN
+  on:
+    branch: master
