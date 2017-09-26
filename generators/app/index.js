@@ -14,23 +14,109 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const Bundle = require("../../package.json");
+const Log4js = require('log4js');
+const logger = Log4js.getLogger("generator-nodeserver");
 const path = require('path');
-const os = require('os');
+const fs = require('fs');
+
+const OPTION_BLUEMIX = 'bluemix';
+const OPTION_STARTER = 'starter';
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    // generate only for Node.js apps
-    this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'WEB'}};
+
+    logger.level= "info";
+    logger.info("Package info ::", Bundle.name, Bundle.version);
+
+    if ( typeof this.options.bluemix == "undefined" ) { 
+      // generate only for Node.js apps
+      this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'WEB'}};
+    }
+    else { 
+      
+      this._sanitizeOption(this.options, OPTION_BLUEMIX);
+      this._sanitizeOption(this.options, OPTION_STARTER);
+      
+      this.opts = opts;
+      
+    }
   }
 
   initializing() {
-    this.composeWith(require.resolve('../core'), this.opts);
+  }
+
+  prompting() {
+    
+    let swaggerFileValidator= function(str) {  
+      if ( str == "None" ) {
+        return true;
+      }
+      else {  
+        if ( fs.existsSync(str.trim()) ) { 
+          return true; 
+        } 
+        else { 
+          console.log("\n"+str+" not found.");
+          return false;
+        } 
+      }    
+    }
+
+    let prompts = [];
+    prompts.push({
+      type: 'input',
+      name: 'name',
+      message: 'Project name',
+      default: path.basename(process.cwd())
+    });
+    prompts.push({
+      type: 'input',
+      name: 'swaggerFileName',
+      message: 'OpenAPI Document',
+      default: "None",
+      validate: swaggerFileValidator 
+    });
+    return this.prompt(prompts).then(this._processAnswers.bind(this));
+
+  }
+  
+  configuring() {}
+
+  _processAnswers(answers) {
+
+    this.opts.bluemix.backendPlatform = 'NODE';
+    this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
+    answers.swaggerFileName = answers.swaggerFileName.trim();
+    if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {  
+      let rawdata = fs.readFileSync(answers.swaggerFileName);  
+      let swaggerJson = JSON.parse(rawdata)
+      this.opts.bluemix.openApiServers= [{"spec": JSON.stringify(swaggerJson) }]; 
+    }
+
+    this._composeSubGenerators(); 
+  }
+
+  _composeSubGenerators() { 
+
+    this.opts.bluemix.quiet= true; // suppress version messages
+
     if (process.env.YO_SUB_GEN_MODE === 'global') {
+      // for develop-mode testing
+      this.composeWith('ibm-core-node-express', this.opts);
       this.composeWith('ibm-cloud-enablement', this.opts);
     }
     else { 
       const modDirName = __dirname + '/../../node_modules';
+      this.composeWith(
+        path.join(
+          modDirName,
+          'generator-ibm-core-node-express',
+          'app'
+        ),
+        this.opts
+      ); 
       this.composeWith(
         path.join(
           modDirName,
@@ -43,32 +129,14 @@ module.exports = class extends Generator {
     }
   }
 
-  prompting() {
-    const prompts = [];
+  _sanitizeOption(options, name) {
 
-    prompts.push({
-      type: 'input',
-      name: 'name',
-      message: 'Project name',
-      default: path.basename(process.cwd()),
-    });
-    prompts.push({
-      type: 'input',
-      name: 'dockerRegistry',
-      message: 'Docker Registry (space for none)',
-      default: 'registry.ng.bluemix.net/' + os.userInfo().username,
-    });
-
-    return this.prompt(prompts).then(this._processAnswers.bind(this));
+    try {
+      this.options[name] = typeof (this.options[name]) === 'string' ? 
+        JSON.parse(this.options[name]) : this.options[name];
+    } catch (e) {
+      throw Error(`${name} parameter is expected to be a valid stringified JSON object`);
+    }
   }
 
-  configuring() {}
-
-  _processAnswers(answers) {
-    this.opts.bluemix.backendPlatform = 'NODE';
-    this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
-    answers.dockerRegistry = answers.dockerRegistry.trim();
-    this.opts.bluemix.dockerRegistry =
-      answers.dockerRegistry.length > 0 ? answers.dockerRegistry : '';
-  }
 };
