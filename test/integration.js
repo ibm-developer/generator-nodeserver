@@ -261,16 +261,16 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
   });
 });
 
-describe('core-node-express:app integration test with custom bluemix and swagger and spec', function () {
+describe('core-node-express:app integration test using prompts', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
 
   before(function () {
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
-      .withOptions({
-        bluemix: '{ "name": "'+PROJECT_NAME+'","backendPlatform":"NODE","openApiServers":[{"spec":{"swagger":"2.0","info":{"version":"0.0.0","title":"<enter your title>"},"basePath":"/basepath","paths":{"/persons":{"get":{"description":"Gets `Person` objects.","produces":["application/json"],"responses":{"200":{"description":"A list of Persons","schema":{"type":"array","items":{"$ref":"#/definitions/age"}}}}}},"/dinosaurs":{"get":{"description":"Gets `Dinosaur` objects.","produces":["application/json"],"responses":{"200":{"description":"A list of Dinosaurs","schema":{"type":"array","items":{"$ref":"#/definitions/dino"}}}}}}},"definitions":{"age":{"type":"object","required":["age"],"properties":{"age":{"type":"string"}}},"dino":{"type":"object","required":["age"],"properties":{"age":{"$ref":"#/definitions/age"},"ages":{"items":{"$ref":"#/definitions/newage"}}}},"newage":{"type":"object","required":["age"],"properties":{"age":{"type":"string"}}}}}}]}', 
-        spec: JSON.stringify({port: common.defaultPort, applicationType: 'WEB'})})
+      .withPrompts({
+        name: "TEST_APP",
+        swaggerFileName: __dirname+"/resources/person_dino.json"})
       .toPromise(); // Get a Promise back when the generator finishes
   });
 

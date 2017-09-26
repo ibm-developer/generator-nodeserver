@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.0",
+    "title": "<enter your title>"
+  },
+  "basePath": "/basepath",
+  "paths": {
+    "/persons": {
+      "get": {
+        "description": "Gets 'Person' objects.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Persons",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/age"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dinosaurs": {
+      "get": {
+        "description": "Gets 'Dinosaur' objects.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Dinosaurs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dino"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "age": {
+      "type": "object",
+      "required": [
+        "age"
+      ],
+      "properties": {
+        "age": {
+          "type": "string"
+        }
+      }
+    },
+    "dino": {
+      "type": "object",
+      "required": [
+        "age"
+      ],
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/age"
+        },
+        "ages": {
+          "items": {
+            "$ref": "#/definitions/newage"
+          }
+        }
+      }
+    },
+    "newage": {
+      "type": "object",
+      "required": [
+        "age"
+      ],
+      "properties": {
+        "age": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
