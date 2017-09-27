@@ -41,6 +41,8 @@ module.exports = class extends Generator {
       this._sanitizeOption(this.options, OPTION_STARTER);
       this.opts = opts;      
     }
+
+    this.conflicter.force = true;
   }
 
   initializing() {
