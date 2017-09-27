@@ -20,7 +20,7 @@ const logger = Log4js.getLogger("generator-nodeserver");
 const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
-const services= require('./services');
+const services= require('./services/services');
 
 const OPTION_BLUEMIX = 'bluemix';
 const OPTION_STARTER = 'starter';
@@ -42,6 +42,10 @@ module.exports = class extends Generator {
       this.opts = opts;      
     }
 
+    /* Do this so there are no overwrite messages when
+       subgenerators run. The overwrites are expected
+       by design. 
+    */
     this.conflicter.force = true;
   }
 
@@ -109,7 +113,6 @@ module.exports = class extends Generator {
     
     if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {  
       let swagger = fs.readFileSync(answers.swaggerFileName,"utf8"); 
-      console.log("type "+typeof swagger); 
       this.opts.bluemix.openApiServers= [{"spec": swagger }]; 
     }
 
@@ -119,7 +122,9 @@ module.exports = class extends Generator {
 
   // store specified option in bluemix object to drive generator-ibm-service-enablement
   _storeServiceName(service) {
-    this.opts.bluemix[services.SERVICES[services.SERVICE_LABELS.indexOf(service)]]= {}; 
+    let service_name= services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
+    let service_data= require("./services/"+service_name);
+    this.opts.bluemix[service_name]= service_data[service_name]; 
   }
 
   // process each service selected by user 
@@ -142,7 +147,7 @@ module.exports = class extends Generator {
       // for develop-mode testing
       this.composeWith('ibm-core-node-express', this.opts);
       this.composeWith('ibm-cloud-enablement', this.opts);
-      
+
       if ( this.hasServices ) { 
         this.composeWith('ibm-service-enablement', {
           bluemix: JSON.stringify(this.opts.bluemix), 
@@ -170,6 +175,7 @@ module.exports = class extends Generator {
         ),
         this.opts
       );  
+
       if ( this.hasServices ) {
         this.composeWith(
           path.join(modDirName,'generator-ibm-service-enablement','generators','app'), 
