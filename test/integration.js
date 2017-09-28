@@ -20,6 +20,7 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 const PROJECT_NAME = "ProjectName";
+//const services = require("../generators/app/services/services");
 
 describe('core-node-express:app integration test with custom spec', function () {
   // Express build is slow so we need to set a longer timeout for the test
@@ -338,6 +339,214 @@ describe('core-node-express:app integration test using prompts', function () {
   describe(common.fileSwagger.gitignore, function () {
     it('contains node_modules', function () {
       assert.fileContent(common.fileSwagger.gitignore, 'node_modules');
+    });
+  });
+
+});
+
+
+describe('core-node-express:app integration test chose service alert', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "alert" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-alert-notification.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service appid', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "appid" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-appid.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service cloudant', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "cloudant" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-cloudant.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service mongo', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "mongo" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-mongodb.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service object storage', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "object storage" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-object-storage.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service postgre', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "postgre" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-postgre.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service push', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "push" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-push.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service redis', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "redis" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-redis.js");
+    });
+  });
+
+});
+
+describe('core-node-express:app integration test chose service watson conversation', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+  
+  before(function () {
+      
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+      .withPrompts({
+        name: "TEST_APP",
+        addCloudServices: "true",
+        services: [ "watson conversation" ] })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+  
+  describe('basic file structure test', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-watson-conversation.js");
     });
   });
 

@@ -128,7 +128,7 @@ module.exports = class extends Generator {
 
   // process each service selected by user 
   _processServices(answers) { 
-     
+    
     if ( answers.services ) { 
       this.hasServices= true; 
       answers.services.forEach(this._storeServiceName.bind(this));
