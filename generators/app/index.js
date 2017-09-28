@@ -19,6 +19,7 @@ const Log4js = require('log4js');
 const logger = Log4js.getLogger("generator-nodeserver");
 const path = require('path');
 const fs = require('fs');
+const services= require('./services/services');
 
 const OPTION_BLUEMIX = 'bluemix';
 const OPTION_STARTER = 'starter';
@@ -35,13 +36,16 @@ module.exports = class extends Generator {
       this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'WEB'}};
     }
     else { 
-      
       this._sanitizeOption(this.options, OPTION_BLUEMIX);
       this._sanitizeOption(this.options, OPTION_STARTER);
-      
-      this.opts = opts;
-      
+      this.opts = opts;      
     }
+
+    /* Do this so there are no overwrite messages when
+       subgenerators run. The overwrites are expected
+       by design. 
+    */
+    this.conflicter.force = true;
   }
 
   initializing() {
@@ -64,6 +68,10 @@ module.exports = class extends Generator {
       }    
     }
 
+    let choseCloudServices= function(answers) {
+      return answers.addCloudServices;
+    }
+
     let prompts = [];
     prompts.push({
       type: 'input',
@@ -76,10 +84,22 @@ module.exports = class extends Generator {
       name: 'swaggerFileName',
       message: 'OpenAPI Document',
       default: "None",
-      validate: swaggerFileValidator 
+      validate: swaggerFileValidator,
+    });
+    prompts.push({
+      type: 'confirm',
+      name: 'addCloudServices',
+      message: 'Add IBM Cloud Service Enablement?',
+      default: false
+    });
+    prompts.push({
+      type: 'checkbox',
+      name: 'services',
+      message: 'Choose IBM Cloud Services',
+      when: choseCloudServices, 
+      choices: services.SERVICE_CHOICES
     });
     return this.prompt(prompts).then(this._processAnswers.bind(this));
-
   }
   
   configuring() {}
@@ -89,13 +109,33 @@ module.exports = class extends Generator {
     this.opts.bluemix.backendPlatform = 'NODE';
     this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
     answers.swaggerFileName = answers.swaggerFileName.trim();
+    
     if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {  
-      let rawdata = fs.readFileSync(answers.swaggerFileName);  
-      let swaggerJson = JSON.parse(rawdata)
-      this.opts.bluemix.openApiServers= [{"spec": JSON.stringify(swaggerJson) }]; 
+      let swagger = fs.readFileSync(answers.swaggerFileName,"utf8"); 
+      this.opts.bluemix.openApiServers= [{"spec": swagger }]; 
     }
 
+    this._processServices(answers);
     this._composeSubGenerators(); 
+  }
+
+  // store specified option in bluemix object to drive generator-ibm-service-enablement
+  _storeServiceName(service) {
+    let service_name= services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
+    let service_data= require("./services/"+service_name);
+    this.opts.bluemix[service_name]= service_data[service_name]; 
+  }
+
+  // process each service selected by user 
+  _processServices(answers) { 
+    
+    if ( answers.services ) { 
+      this.hasServices= true; 
+      answers.services.forEach(this._storeServiceName.bind(this));
+    } 
+    else { 
+      this.hasServices= false;
+    }
   }
 
   _composeSubGenerators() { 
@@ -106,6 +146,14 @@ module.exports = class extends Generator {
       // for develop-mode testing
       this.composeWith('ibm-core-node-express', this.opts);
       this.composeWith('ibm-cloud-enablement', this.opts);
+
+      if ( this.hasServices ) { 
+        this.composeWith('ibm-service-enablement', {
+          bluemix: JSON.stringify(this.opts.bluemix), 
+          spec: JSON.stringify(this.opts.spec),
+          starter: "{}",
+          quiet: true});
+      } 
     }
     else { 
       const modDirName = __dirname + '/../../node_modules';
@@ -126,6 +174,17 @@ module.exports = class extends Generator {
         ),
         this.opts
       );  
+
+      if ( this.hasServices ) {
+        this.composeWith(
+          path.join(modDirName,'generator-ibm-service-enablement','generators','app'), 
+          {
+            bluemix: JSON.stringify(this.opts.bluemix), 
+            spec: JSON.stringify(this.opts.spec),
+            starter: "{}",
+            quiet: true 
+          }); 
+      }
     }
   }
 
