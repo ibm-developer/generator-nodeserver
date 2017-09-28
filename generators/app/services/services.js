@@ -1,3 +1,5 @@
+'use strict';
+
 // labels for prompt checkbox 
 const CHECKBOX_ALERT = "alert";
 const CHECKBOX_APPID = "appid";
@@ -53,8 +55,8 @@ const SERVICES= [
   "conversation"
 ];
 
-module.exports = { 
-    SERVICE_LABELS,
-    SERVICE_CHOICES,
-    SERVICES
+module.exports = {
+  SERVICE_LABELS,
+  SERVICE_CHOICES,
+  SERVICES
 };

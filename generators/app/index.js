@@ -19,7 +19,6 @@ const Log4js = require('log4js');
 const logger = Log4js.getLogger("generator-nodeserver");
 const path = require('path');
 const fs = require('fs');
-const yaml = require('js-yaml');
 const services= require('./services/services');
 
 const OPTION_BLUEMIX = 'bluemix';
