@@ -187,9 +187,9 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
     Notes: 
         
     
-    1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. 
+        1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. 
         
-    1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
+        1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
 
 1. IBM Cloud Developer Tools
 
