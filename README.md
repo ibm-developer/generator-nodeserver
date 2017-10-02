@@ -178,11 +178,11 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
         - `<tag value>`
 
-            The image tag value of your release Dockerimage - e.g. `latest` or `1.0.0`
+            The image tag value of your release Dockerimage - e.g. 'latest' or '1.0.0'
 
         - `pullPolicy`
 
-            `Always` or `IfNotPresent`.  See [Kubernetes image documentation](https://kubernetes.io/docs/concepts/containers/images/) for further explanation. 
+            'Always' or 'IfNotPresent'.  See [Kubernetes image documentation](https://kubernetes.io/docs/concepts/containers/images/) for further explanation. 
 
     Notes: 
         
@@ -198,7 +198,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
     1. The idt tool will prompt for registry/image name, then push your image and install your Helm chart to the Kubernetes environment pointed to by your KUBECONFIG environment variable. 
     
-    1. For IBM Cloud, set KUBECONFIG using the 'bx cs cluster-config <cluster name>' command.  Note this command is installed as part of IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
+    1. For IBM Cloud, set KUBECONFIG using the 'bx cs cluster-config `<cluster name>` command.  Note this command is installed as part of IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
 
 #### Clound Foundry Deployment 
  
