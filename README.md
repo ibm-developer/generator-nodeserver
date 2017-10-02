@@ -159,7 +159,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
     1. Install your project by installing the included Helm chart, using Helm in the project root directory:
 
-        helm install chart/`<project name>` --name=`<release name>` --set repository=`<image name>` --set tag=`<tag value>` --set pullPolicy=Always|IfNotPresent 
+        helm install chart/`<project name>` --name=`<release name>` --set repository=`<image name>` --set tag=`<tag value>` --set pullPolicy=`<pull policy>` 
 
         Where: 
 
@@ -174,21 +174,22 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
         - `<image name>`
 
             The registry/image name of your release Docker image - e.g. 
-            `registry.ng.bluemix.net/myspace/myimage`
+            'registry.ng.bluemix.net/myspace/myimage'
 
         - `<tag value>`
 
-            The image tag value of your release Dockerimage - e.g. `latest` or `1.0.0`
+            The image tag value of your release Dockerimage - e.g. 'latest' or '1.0.0'
 
-        - `pullPolicy`
+        - `<pull policy>`
 
-            `Always` or `IfNotPresent`.  See [Kubernetes image documentation](https://kubernetes.io/docs/concepts/containers/images/) for further explanation. 
+            'Always' or 'IfNotPresent'.  See [Kubernetes image documentation](https://kubernetes.io/docs/concepts/containers/images/) for further explanation. 
 
     Notes: 
         
-        1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. 
+    
+    1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. 
         
-        1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
+    1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
 
 1. IBM Cloud Developer Tools
 
@@ -198,7 +199,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
     1. The idt tool will prompt for registry/image name, then push your image and install your Helm chart to the Kubernetes environment pointed to by your KUBECONFIG environment variable. 
     
-    1. For IBM Cloud, set KUBECONFIG using the 'bx cs cluster-config <cluster name>' command.  Note this command is installed as part of IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
+    1. For IBM Cloud, set KUBECONFIG using the 'bx cs cluster-config `<cluster name>` command.  Note this command is installed as part of IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
 
 #### Clound Foundry Deployment 
  
