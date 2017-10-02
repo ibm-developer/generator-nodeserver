@@ -1,6 +1,6 @@
 {
   "name": "generator-nodeserver",
-  "version": "0.0.12",
+  "version": "1.0.0",
   "description": "Generates a nodeserver project.",
   "main": "generators/app/index.js",
   "license": "Apache-2.0",
