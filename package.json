@@ -4,6 +4,9 @@
   "description": "Generates a nodeserver project.",
   "main": "generators/app/index.js",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
   "files": [
     "generators"
   ],
