@@ -41,7 +41,7 @@ module.exports = class extends Generator {
       this.opts = opts;
     }
 
-    var headlessDesc = 'Run in headless mode (no prompts). Format --headless=\'{"name": "myproject"}\'"'
+    const headlessDesc = 'Run in headless mode (no prompts). Format --headless=\'{"name": "myproject"}\'"';
     this.option('headless', {desc: headlessDesc, type: String});
 
     /* Do this so there are no overwrite messages when
@@ -75,8 +75,8 @@ module.exports = class extends Generator {
     }
     // If headless mode don't prompt
     if (this.options.headless) {
-      var json = JSON.parse(this.options.headless);
-      var values = {
+      let json = JSON.parse(this.options.headless);
+      let values = {
         name: json.name || path.basename(process.cwd()),
         swaggerFileName: json.swaggerFileName || 'None',
         addCloudServices: (json.services ? true : false)
