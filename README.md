@@ -104,18 +104,45 @@ When you run 'yo nodeserver', it will prompt you for the following:
     Specify Y|N whether or not you want to scaffold IBM Cloud service enablement into your project.  If you specify 'Y', you will be able to select one or more services from a checklist. For each service you select,configuration and access scaffolding code is generated.  IBM Cloud service enablement is optional.
 
 ### Headless mode (without prompting)
+Use headless mode to create an app without having to use the UI. This is useful when you want to use this generator to build a project by only running a script instead of interactively.
 
-To create an app where only the name is given (current directory name) run the command:
+To create an app using the default options run the command:
 
 ```bash
 yo nodeserver --headless
 ```
+Defaults:
+* Name: the current working directory.
+* SwaggerFileName: false.
+* Services: false.
 
-To use the full options as listed above, base your command on the following layout:
+#### Headless usage
+To specify the name of the project use:
+```bash
+yo nodeserver --headless='{"name":"your-app-name"}'
+```
 
+To specify which services to add use:
+```bash
+yo nodeserver --headless='{"services":["service1", "service2"]}'
+```
+For valid services see below.
+
+Full usage:
 ```bash
 yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","services":["service1", "service2"]}'
 ```
+
+#### Valid Services
+* alertnotification
+* auth
+* cloudant
+* mongodb
+* objectStorage
+* postgresql
+* push
+* redis
+* conversation
 
 ### Project Build/Run
 
