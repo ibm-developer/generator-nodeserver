@@ -134,15 +134,15 @@ yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagge
 ```
 
 #### Valid Services
-* alertnotification
-* auth
-* cloudant
-* mongodb
-* objectStorage
-* postgresql
-* push
-* redis
-* conversation
+* 'alert'
+* 'appid'
+* 'cloudant'
+* 'mongo'
+* 'object storage'
+* 'postgre'
+* 'push'
+* 'redis'
+* 'watson conversation'
 
 ### Project Build/Run
 
