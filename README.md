@@ -32,7 +32,7 @@
 This generator produces an Express-based Node.js server project with all the ingredients you need for a good start at building a cloud native application. You can choose between either a simple web app or microservice pattern. Combine the microservice pattern with a web app for a
 [backend-for-frontend](http://samnewman.io/patterns/architectural/bff/) pattern.
 
-Bring your own optional [Swagger document](swagger.io) to direct code generation for top-down development.
+Bring your own optional [Swagger document](https://swagger.io/) to direct code generation for top-down development.
 
 ### Monitoring and Health
 
