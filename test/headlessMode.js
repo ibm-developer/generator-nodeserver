@@ -79,19 +79,9 @@ describe('Headless mode: app integration test with custom spec', function () {
   });
 
   describe(common.file.README_md, function () {
-    it('contains default project name', function () {
-      // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
-    });
-
     it('contains Bluemix badge', function () {
       assert.fileContent(common.file.README_md,
         '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
-    });
-  });
-
-  describe(common.file.server_js, () => {
-    it('contains default app name', () => {
-      // TODO assert.fileContent(common.file.server_js, 'logger.info(`ProjectName listening on http://localhost:${port}`);')
     });
   });
 
@@ -102,7 +92,7 @@ describe('Headless mode: app integration test with custom spec', function () {
   });
 });
 
-describe('Headless mode: app integration test using purely headless mode (with Swagger file)', function () {
+describe('Headless mode: app integration test using headless mode (with Swagger file)', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
 
@@ -161,19 +151,12 @@ describe('Headless mode: app integration test using purely headless mode (with S
 
   describe(common.fileSwagger.README_md, function () {
     it('contains custom project name', function () {
-      // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
       assert.fileContent(common.file.README_md, "TEST_APP");
     });
 
     it('contains Bluemix badge', function () {
       assert.fileContent(common.fileSwagger.README_md,
         '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
-    });
-  });
-
-  describe(common.fileSwagger.server_js, () => {
-    it('contains custom app name', () => {
-      // TODO assert.fileContent(common.file.server_js, 'logger.info(`ProjectName listening on http://localhost:${port}`);')
     });
   });
 
