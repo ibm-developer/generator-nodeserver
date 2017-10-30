@@ -31,19 +31,22 @@ module.exports = class extends Generator {
     logger.level= "info";
     logger.info("Package info ::", Bundle.name, Bundle.version);
 
-    if ( typeof this.options.bluemix == "undefined" ) { 
+    if ( typeof this.options.bluemix == "undefined" ) {
       // generate only for Node.js apps
       this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'WEB'}};
     }
-    else { 
+    else {
       this._sanitizeOption(this.options, OPTION_BLUEMIX);
       this._sanitizeOption(this.options, OPTION_STARTER);
-      this.opts = opts;      
+      this.opts = opts;
     }
+
+    const headlessDesc = 'Run in headless mode (no prompts). Format --headless=\'{"name": "myproject"}\'"';
+    this.option('headless', {desc: headlessDesc, type: String});
 
     /* Do this so there are no overwrite messages when
        subgenerators run. The overwrites are expected
-       by design. 
+       by design.
     */
     this.conflicter.force = true;
   }
@@ -52,93 +55,106 @@ module.exports = class extends Generator {
   }
 
   prompting() {
-    
-    let swaggerFileValidator= function(str) {  
+    let swaggerFileValidator= function(str) {
       if ( str == "None" ) {
         return true;
       }
-      else {  
-        if ( fs.existsSync(str.trim()) ) { 
-          return true; 
-        } 
-        else { 
+      else {
+        if ( fs.existsSync(str.trim()) ) {
+          return true;
+        }
+        else {
           console.log("\n"+str+" not found.");
           return false;
-        } 
-      }    
+        }
+      }
     }
 
     let choseCloudServices= function(answers) {
       return answers.addCloudServices;
     }
+    // If headless mode don't prompt
+    if (this.options.headless) {
+      let json = JSON.parse(this.options.headless);
+      let values = {
+        name: json.name || path.basename(process.cwd()),
+        swaggerFileName: json.swaggerFileName || 'None',
+        addCloudServices: (json.services ? true : false)
+      }
+      // Only add service field to json object if addCloudServices is true
+      if (values.addCloudServices) {
+        values.services = json.services;
+      }
 
-    let prompts = [];
-    prompts.push({
-      type: 'input',
-      name: 'name',
-      message: 'Project name',
-      default: path.basename(process.cwd())
-    });
-    prompts.push({
-      type: 'input',
-      name: 'swaggerFileName',
-      message: 'OpenAPI Document',
-      default: "None",
-      validate: swaggerFileValidator,
-    });
-    prompts.push({
-      type: 'confirm',
-      name: 'addCloudServices',
-      message: 'Add IBM Cloud Service Enablement?',
-      default: false
-    });
-    prompts.push({
-      type: 'checkbox',
-      name: 'services',
-      message: 'Choose IBM Cloud Services',
-      when: choseCloudServices, 
-      choices: services.SERVICE_CHOICES
-    });
-    return this.prompt(prompts).then(this._processAnswers.bind(this));
+      this._processAnswers(values);
+    } else {
+      let prompts = [];
+      prompts.push({
+        type: 'input',
+        name: 'name',
+        message: 'Project name',
+        default: path.basename(process.cwd())
+      });
+      prompts.push({
+        type: 'input',
+        name: 'swaggerFileName',
+        message: 'OpenAPI Document',
+        default: "None",
+        validate: swaggerFileValidator,
+      });
+      prompts.push({
+        type: 'confirm',
+        name: 'addCloudServices',
+        message: 'Add IBM Cloud Service Enablement?',
+        default: false
+      });
+      prompts.push({
+        type: 'checkbox',
+        name: 'services',
+        message: 'Choose IBM Cloud Services',
+        when: choseCloudServices,
+        choices: services.SERVICE_CHOICES
+      });
+
+      return this.prompt(prompts).then(this._processAnswers.bind(this));
+    }
   }
-  
+
   configuring() {}
 
   _processAnswers(answers) {
-
     this.opts.bluemix.backendPlatform = 'NODE';
     this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
     answers.swaggerFileName = answers.swaggerFileName.trim();
-    
-    if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {  
-      let swagger = fs.readFileSync(answers.swaggerFileName,"utf8"); 
-      this.opts.bluemix.openApiServers= [{"spec": swagger }]; 
+
+    if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {
+      let swagger = fs.readFileSync(answers.swaggerFileName,"utf8");
+      this.opts.bluemix.openApiServers= [{"spec": swagger }];
     }
 
     this._processServices(answers);
-    this._composeSubGenerators(); 
+    this._composeSubGenerators();
   }
 
   // store specified option in bluemix object to drive generator-ibm-service-enablement
   _storeServiceName(service) {
     let service_name= services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
     let service_data= require("./services/"+service_name);
-    this.opts.bluemix[service_name]= service_data[service_name]; 
+    this.opts.bluemix[service_name]= service_data[service_name];
   }
 
-  // process each service selected by user 
-  _processServices(answers) { 
-    
-    if ( answers.services ) { 
-      this.hasServices= true; 
+  // process each service selected by user
+  _processServices(answers) {
+    if ( answers.services ) {
+      this.hasServices= true;
       answers.services.forEach(this._storeServiceName.bind(this));
-    } 
-    else { 
+    }
+    else {
       this.hasServices= false;
     }
   }
 
-  _composeSubGenerators() { 
+  _composeSubGenerators() {
 
     this.opts.bluemix.quiet= true; // suppress version messages
 
@@ -147,15 +163,15 @@ module.exports = class extends Generator {
       this.composeWith('ibm-core-node-express', this.opts);
       this.composeWith('ibm-cloud-enablement', this.opts);
 
-      if ( this.hasServices ) { 
+      if ( this.hasServices ) {
         this.composeWith('ibm-service-enablement', {
-          bluemix: JSON.stringify(this.opts.bluemix), 
+          bluemix: JSON.stringify(this.opts.bluemix),
           spec: JSON.stringify(this.opts.spec),
           starter: "{}",
           quiet: true});
-      } 
+      }
     }
-    else { 
+    else {
       const modDirName = __dirname + '/../../node_modules';
       this.composeWith(
         path.join(
@@ -164,7 +180,7 @@ module.exports = class extends Generator {
           'app'
         ),
         this.opts
-      ); 
+      );
       this.composeWith(
         path.join(
           modDirName,
@@ -173,17 +189,17 @@ module.exports = class extends Generator {
           'app'
         ),
         this.opts
-      );  
+      );
 
       if ( this.hasServices ) {
         this.composeWith(
-          path.join(modDirName,'generator-ibm-service-enablement','generators','app'), 
+          path.join(modDirName,'generator-ibm-service-enablement','generators','app'),
           {
-            bluemix: JSON.stringify(this.opts.bluemix), 
+            bluemix: JSON.stringify(this.opts.bluemix),
             spec: JSON.stringify(this.opts.spec),
             starter: "{}",
-            quiet: true 
-          }); 
+            quiet: true
+          });
       }
     }
   }
@@ -191,7 +207,7 @@ module.exports = class extends Generator {
   _sanitizeOption(options, name) {
 
     try {
-      this.options[name] = typeof (this.options[name]) === 'string' ? 
+      this.options[name] = typeof (this.options[name]) === 'string' ?
         JSON.parse(this.options[name]) : this.options[name];
     } catch (e) {
       throw Error(`${name} parameter is expected to be a valid stringified JSON object`);
