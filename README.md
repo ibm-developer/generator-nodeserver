@@ -234,7 +234,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
 1. IBM Cloud Developer Tools
 
-    npm run idt:deploy --target container
+    npm run idt:deploy -- --target container
 
     Notes:
 
