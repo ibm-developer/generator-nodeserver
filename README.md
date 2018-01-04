@@ -234,7 +234,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
 1. IBM Cloud Developer Tools
 
-    npm idt:deploy --target container
+    npm run idt:deploy --target container
 
     Notes:
 
@@ -244,13 +244,15 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
 #### Clound Foundry Deployment
 
+1. Add a host name to the manifest.yml file
+
 1. cf push
 
    Note: if you installed IBM Cloud Developer Tools using the 'npm run idt:install' command, you can run the 'bx cf push' command. Otherwise, install the cf command from [Pivotal](https://docs.run.pivotal.io/cf-cli/install-go-cli.html).
 
 1. IBM Cloud Developer Tools
 
-    npm idt:deploy
+    npm run idt:deploy
 
     This was installed using your project's 'npm run idt:install' script.
 
