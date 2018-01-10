@@ -56,7 +56,7 @@ describe('core-node-express:app integration test with custom spec', function () 
     it('check package.json', function () {
       assert.jsonFileContent(common.file.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -74,8 +74,7 @@ describe('core-node-express:app integration test with custom spec', function () 
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
@@ -135,7 +134,7 @@ describe('core-node-express:app integration test with custom bluemix', function 
     it('check package.json', function () {
       assert.jsonFileContent(common.file.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -153,8 +152,7 @@ describe('core-node-express:app integration test with custom bluemix', function 
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
@@ -214,7 +212,7 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
     it('check package.json', function () {
       assert.jsonFileContent(common.file.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -232,8 +230,7 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
@@ -295,7 +292,7 @@ describe('core-node-express:app integration test using prompts', function () {
     it('check package.json', function () {
       assert.jsonFileContent(common.fileSwagger.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -313,8 +310,7 @@ describe('core-node-express:app integration test using prompts', function () {
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
@@ -356,7 +352,7 @@ describe('core-node-express:app integration test chose service alert', function 
       .withPrompts({
         name: "TEST_APP",
         addCloudServices: "true",
-        services: [ "alert" ] })
+        services: [ "alert notification" ] }) 
       .toPromise(); // Get a Promise back when the generator finishes
   });
   

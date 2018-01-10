@@ -15,9 +15,9 @@
   ],
   "dependencies": {
     "fs-extra": "^2.0.0",
-    "generator-ibm-core-node-express": "^0.0.69",
-    "generator-ibm-cloud-enablement": "^0.6.11",
-    "generator-ibm-service-enablement": "^0.0.88",
+    "generator-ibm-core-node-express": "^0.4.0",
+    "generator-ibm-cloud-enablement": "^0.6.14",
+    "generator-ibm-service-enablement": "^0.6.5",
     "handlebars": "^4.0.10",
     "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",

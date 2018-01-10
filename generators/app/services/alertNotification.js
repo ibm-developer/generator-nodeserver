@@ -1,5 +1,5 @@
 'use strict';
-let alertnotification = [
+let alertNotification = [
   {
     "url": "alert_url",
     "username": "alert-username",
@@ -11,4 +11,4 @@ let alertnotification = [
     }
   }
 ]
-exports.alertnotification = alertnotification;
+exports.alertNotification = alertNotification;
