@@ -1,7 +1,7 @@
 'use strict';
 
 // labels for prompt checkbox 
-const CHECKBOX_ALERT = "alert";
+const CHECKBOX_ALERT = "alert notification";
 const CHECKBOX_APPID = "appid";
 const CHECKBOX_CLOUDANT = "cloudant";
 const CHECKBOX_MONGO = "mongo";
@@ -44,7 +44,7 @@ service sub-generator (e.g. service-alert-notification)
 */
 
 const SERVICES= [ 
-  "alertnotification",
+  "alertNotification",
   "auth",
   "cloudant",
   "mongodb",
