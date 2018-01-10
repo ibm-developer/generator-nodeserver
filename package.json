@@ -1,6 +1,6 @@
 {
   "name": "generator-nodeserver",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Generates a nodeserver project.",
   "main": "generators/app/index.js",
   "license": "Apache-2.0",
@@ -16,7 +16,7 @@
   "dependencies": {
     "fs-extra": "^2.0.0",
     "generator-ibm-core-node-express": "^0.0.69",
-    "generator-ibm-cloud-enablement": "^0.0.98",
+    "generator-ibm-cloud-enablement": "^0.6.11",
     "generator-ibm-service-enablement": "^0.0.88",
     "handlebars": "^4.0.10",
     "js-yaml": "^3.9.0",

@@ -123,6 +123,7 @@ module.exports = class extends Generator {
   configuring() {}
 
   _processAnswers(answers) {
+    this.opts.bluemix.fromYo = true;
     this.opts.bluemix.backendPlatform = 'NODE';
     this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
     answers.swaggerFileName = answers.swaggerFileName.trim();
