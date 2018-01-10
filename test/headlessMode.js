@@ -54,7 +54,7 @@ describe('Headless mode: app integration test with custom spec', function () {
     it('check package.json', function () {
       assert.jsonFileContent(common.file.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -72,8 +72,7 @@ describe('Headless mode: app integration test with custom spec', function () {
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
@@ -125,7 +124,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
     it('check package.json', function () {
       assert.jsonFileContent(common.fileSwagger.package_json, {
         "version": "1.0.0",
-        "description": "A generated Bluemix application",
+        "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
           "node": "^6.9.0"
@@ -143,8 +142,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
         "devDependencies": {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
-          "nyc": "^10.3.2",
-          "proxyquire": "^1.8.0"
+          "nyc": "^10.3.2"
         }});
     });
   });
