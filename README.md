@@ -181,7 +181,7 @@ Build your generated project one of two ways:
 
 Build a Docker image and run project in a Docker container using Docker commands in the project root directory:
 
-1. docker build -t my-image
+1. docker build -t my-image .
 1. docker run -p 3000:3000 --name my-container my-image
 
 Stop and optionally remove the container and image with the following commands:
