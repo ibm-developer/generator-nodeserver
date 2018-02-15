@@ -155,6 +155,8 @@ Build your generated project one of two ways:
 
     There are npm scripts to simply this for you:
 
+    1. npm install
+
     1. npm run idt:install
 
         Installs IBM Cloud Developer Tools.
