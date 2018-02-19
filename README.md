@@ -124,13 +124,13 @@ yo nodeserver --headless='{"name":"your-app-name"}'
 
 To specify which services to add use:
 ```bash
-yo nodeserver --headless='{"services":["service1", "service2"]}'
+yo nodeserver --headless='{"service":["service1", "service2"]}'
 ```
 For valid services see below.
 
 Full usage:
 ```bash
-yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","services":["service1", "service2"]}'
+yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","service":["service1", "service2"]}'
 ```
 
 #### Valid Services
@@ -154,6 +154,8 @@ Build your generated project one of two ways:
     Note that a containerized approach is supported through the tooling in special consideration of Kubernetes as a deployment environment, following the dev/prod parity principle of [12 Factor Apps](12factor.net).
 
     There are npm scripts to simply this for you:
+
+    1. npm install
 
     1. npm run idt:install
 
@@ -181,7 +183,7 @@ Build your generated project one of two ways:
 
 Build a Docker image and run project in a Docker container using Docker commands in the project root directory:
 
-1. docker build -t my-image
+1. docker build -t my-image .
 1. docker run -p 3000:3000 --name my-container my-image
 
 Stop and optionally remove the container and image with the following commands:
