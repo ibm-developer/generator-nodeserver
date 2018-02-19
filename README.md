@@ -124,13 +124,13 @@ yo nodeserver --headless='{"name":"your-app-name"}'
 
 To specify which services to add use:
 ```bash
-yo nodeserver --headless='{"services":["service1", "service2"]}'
+yo nodeserver --headless='{"service":["service1", "service2"]}'
 ```
 For valid services see below.
 
 Full usage:
 ```bash
-yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","services":["service1", "service2"]}'
+yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","service":["service1", "service2"]}'
 ```
 
 #### Valid Services
