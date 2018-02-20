@@ -144,55 +144,55 @@ yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagge
 * 'redis'
 * 'watson conversation'
 
-### Project Build/Run
+## Project Build/Run
 
 Build your generated project one of two ways:
 
-1. normal npm install, npm start  
-1. containerized, using [IBM Cloud Developer Tools](https://github.com/IBM-Bluemix/ibm-cloud-developer-tools)
+1. Normal, `npm install`, `npm start`  
+1. Containerized, using [IBM Cloud Developer Tools](https://github.com/IBM-Bluemix/ibm-cloud-developer-tools)
 
     Note that a containerized approach is supported through the tooling in special consideration of Kubernetes as a deployment environment, following the dev/prod parity principle of [12 Factor Apps](12factor.net).
 
-    There are npm scripts to simply this for you:
+    There are npm scripts to simplify this for you:
 
-    1. npm install
+    1. `npm install`
 
-    1. npm run idt:install
+    1. `npm run idt:install`
 
         Installs IBM Cloud Developer Tools.
 
-    1. npm run idt:build
+    1. `npm run idt:build`
 
         Builds Docker image for dev mode and does npm install, including dev dependencies.
 
-    1. npm run  idt:test
+    1. `npm run  idt:test`
 
         Runs project unit tests in dev mode Docker container.
 
-    1. npm run idt:debug
+    1. `npm run idt:debug`
 
         Runs the project in debug mode in the dev mode Docker container. The app will start and listen on port 5858 by default for a debug client to attach and take control.
 
-    1. npm run idt:run
+    1. `npm run idt:run`
 
         Runs the project in the release mode Docker container.  The release mode Docker container is built without dev dependencies - i.e. with NODE_ENV set to production.
 
-### Project Deployment
+## Project Deployment
 
 ### Docker
 
 Build a Docker image and run project in a Docker container using Docker commands in the project root directory:
 
-1. docker build -t my-image .
-1. docker run -p 3000:3000 --name my-container my-image
+1. `docker build -t my-image .`
+1. `docker run -p 3000:3000 --name my-container my-image`
 
 Stop and optionally remove the container and image with the following commands:
 
-1. docker stop my-container
-1. docker rm my-container
-1. docker rmi my-image
+1. `docker stop my-container`
+1. `docker rm my-container`
+1. `docker rmi my-image`
 
-#### Kubernetes Deployment
+### Kubernetes Deployment
 
 Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
@@ -200,9 +200,9 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
     1. Push your image to a Docker image accessible to your Kubernetes environment, such as [Docker Hub](dockerhub.com) or your company's private image registry.
 
-    1. Install your project by installing the included Helm chart, using Helm in the project root directory:
+    1. Install your project from the project's root directory, using the included Helm chart:
 
-        helm install chart/`<project name>` --name=`<release name>` --set repository=`<image name>` --set tag=`<tag value>` --set pullPolicy=`<pull policy>`
+        helm install chart/`<project name>` --name=`<release name>` --set image.repository=`<image name>` --set image.tag=`<tag value>` --set image.pullPolicy=`<pull policy>`
 
         Where:
 
@@ -227,16 +227,18 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
             'Always' or 'IfNotPresent'.  See [Kubernetes image documentation](https://kubernetes.io/docs/concepts/containers/images/) for further explanation.
 
-    Notes:
+    Notes:  
+    1. If the `helm install` command above gives you an error about not finding 'tiller', execute `helm init --upgrade`.
 
+    1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. Make sure you are in configuration mode for your Kubernetes cluster.
 
-    1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable.
-
-    1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
+    1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running `npm run idt:install`.
+    
+    1. To delete the helm deployment, execute `helm del --purge <release name>`.
 
 1. IBM Cloud Developer Tools
 
-    npm run idt:deploy -- --target container
+    `npm run idt:deploy -- --target container`
 
     Notes:
 
@@ -244,9 +246,9 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 
     1. For IBM Cloud, set KUBECONFIG using the 'bx cs cluster-config `<cluster name>` command.  Note this command is installed as part of IBM Cloud Developer Tools, which you can install for your project by running 'npm run idt:install'
 
-#### Clound Foundry Deployment
+### Clound Foundry Deployment
 
-1. Add a host name to the manifest.yml file
+1. Add a host entry to the "manifest.yml" file (Ex. `host: my-app-name`).
 
 1. cf push
 
