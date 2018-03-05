@@ -151,13 +151,11 @@ Build your generated project one of two ways:
 1. normal npm install, npm start  
 1. containerized, using [IBM Cloud Developer Tools](https://github.com/IBM-Bluemix/ibm-cloud-developer-tools)
 
-    Note that a containerized approach is supported through the tooling in special consideration of Kubernetes as a deployment environment, following the dev/prod parity principle of [12 Factor Apps](12factor.net).
+    Note that a containerized approach is supported through the tooling in special consideration of Kubernetes as a deployment environment, following the dev/prod parity principle of [12 Factor Apps](https://12factor.net/).
 
     There are npm scripts to simply this for you:
 
-    1. npm install
-
-    1. npm run idt:install
+    1. npm run idt:install (you may need to npm install first)
 
         Installs IBM Cloud Developer Tools.
 
@@ -247,6 +245,8 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
 #### Clound Foundry Deployment
 
 1. Add a host name to the manifest.yml file
+
+1. If you want to connect to a service that is already provisioned in the Cloud, add the instance name in manifest.yml under `services` or replace the placeholder if you indicated a service on project creation
 
 1. cf push
 

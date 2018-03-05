@@ -142,12 +142,20 @@ module.exports = class extends Generator {
     let service_name= services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
     let service_data= require("./services/"+service_name);
     this.opts.bluemix[service_name]= service_data[service_name];
+    this.opts.bluemix.server.services.push(service_name.toUpperCase() + "_INSTANCE_REPLACE_ME");
   }
 
   // process each service selected by user
   _processServices(answers) {
     if ( answers.services ) {
       this.hasServices= true;
+      
+      if ( !("server" in this.opts.bluemix) ) {
+        this.opts.bluemix["server"] = []
+      }
+      let services = []
+      this.opts.bluemix.server["services"] = services
+
       answers.services.forEach(this._storeServiceName.bind(this));
     }
     else {
@@ -182,6 +190,7 @@ module.exports = class extends Generator {
         ),
         this.opts
       );
+
       this.composeWith(
         path.join(
           modDirName,
