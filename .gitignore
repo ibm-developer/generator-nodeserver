@@ -4,3 +4,4 @@ coverage/
 .vscode/
 .idea
 *.lock
+xunit.xml
