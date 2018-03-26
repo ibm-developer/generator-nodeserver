@@ -153,7 +153,7 @@ module.exports = class extends Generator {
       if ( !("server" in this.opts.bluemix) ) {
         this.opts.bluemix["server"] = []
       }
-      var services = []
+      let services = []
       this.opts.bluemix.server["services"] = services
 
       answers.services.forEach(this._storeServiceName.bind(this));
