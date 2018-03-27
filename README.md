@@ -179,7 +179,7 @@ Build your generated project one of two ways:
 
 ## Project Deployment
 
-#### Docker
+### Docker
 
 Build a Docker image and run project in a Docker container using Docker commands in the project root directory:
 

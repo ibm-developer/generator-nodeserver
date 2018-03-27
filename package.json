@@ -1,6 +1,6 @@
 {
   "name": "generator-nodeserver",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Generates a nodeserver project.",
   "main": "generators/app/index.js",
   "license": "Apache-2.0",
@@ -27,7 +27,7 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "eslint .",
-    "mocha": "nyc mocha",
+    "mocha": "nyc --reporter=lcov mocha --recursive -R xunit-file",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
@@ -36,6 +36,7 @@
     "eslint-plugin-ejs": "0.0.2",
     "mocha": "^3.2.0",
     "nyc": "^10.3.0",
+    "xunit-file": "^1.0.0",
     "yeoman-assert": "^2.2.2",
     "yeoman-test": "^1.6.0"
   },
