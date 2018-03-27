@@ -1,23 +1,22 @@
 language: node_js
-
 node_js:
 - '8'
-
-script: npm test && npm run coveralls && ./npm_patch.sh
-
+before_install:
+- npm i -g makeshift && makeshift -r https://registry.npmjs.org
+- npm i -g markdown-to-html
+- wget https://github.com/github/hub/releases/download/v2.2.9/hub-linux-386-2.2.9.tgz
+- tar -xvzf hub-linux-386-2.2.9.tgz
+- export PATH=${PATH}:$PWD/hub-linux-386-2.2.9/bin/
+before_script:
+- cd /tmp
+- git clone -b master https://github.com/ibm-developer/changelog-generator-slack-notification.git
+- npm install changelog-generator-slack-notification
+- cd -
+script: npm test && npm run coveralls && ./npm_version_upgrade.sh
 branches:
   only:
-    - development
-    - master
-
+  - development
+  - master
 notifications:
-  slack: 
-    rooms:
-      - $SLACK_ARF_DEVOPS
-
-deploy:
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
-  on:
-    branch: master
+  slack:
+    secure: y00hcpzZCTngonvGE8QvJH0ObjMpvGvNDEZS4ViVP6p2CDcNkRtrKjKxHVepxuTnHPLRxQu04+06MN1ORfhy1pLdSXgPNkVF9HGLXGdjDw9eu7njPykLkMIijo//sZI0oOR/cr1CbQN8MuEJ4Yru6B/FA10r9/gXqi7avDuRfjUeeJkwFlpndvKs52waIRGkRLzDo4LuJ55u85ufZoXkbPKyVs/0hZgaazWJHQP8K54gCCbigq0c9sFVU22vmFKOrTRoSh4PYEjy2dyRB2ToPeD+K695S0p/J7rYyiWgdEz1ihVmiUTvvUPR0Qz1Qj63Khj5cAO0UIV2v+tuTGUWyuJRuHWjlOlefXDfCPky4QsdNfyvA8NQ2YGfonL7mVFjKMJlL2Kz8eB6cylb9zEGfqqT3wz6+hDI2sWv5ZX3cS9bSbY7enxkPT+0Be5BWRU36bkvHz89Ejlw6yet8OKRSOfdqNip0OgJ19Hw76YQTIQCvNLVUHEOyojpYT6wkN8NZGh0Ddw3/DNyTfqJRctP8NwT1x57L7UzBzgJskBNb/yQjvdMkAf/b1r48BKjPUEC9g9rORj6hFMTw297KvmlGDu4c+wyNmWlTxmHcDXQV3+8K4/V5VQqblrnhm8CP7+rKcFlElCZs4f47mFv3T0o6Oo41l+76KYi3WuYYcw1tcg=
