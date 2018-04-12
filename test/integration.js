@@ -31,7 +31,8 @@ describe('core-node-express:app integration test with custom spec', function () 
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withOptions({
         spec: JSON.stringify({ appname: 'testApp', port: common.defaultPort }),
-        bluemix: JSON.stringify({name: PROJECT_NAME})
+        bluemix: JSON.stringify({name: PROJECT_NAME}),
+        framework: "None"
       })
       .toPromise(); // Get a Promise back when the generator finishes
   });
@@ -84,9 +85,9 @@ describe('core-node-express:app integration test with custom spec', function () 
       // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
     });
 
-    it('contains Bluemix badge', function () {
+    it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -110,7 +111,10 @@ describe('core-node-express:app integration test with custom bluemix', function 
   before(function () {
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
-      .withOptions({bluemix: JSON.stringify({ name: PROJECT_NAME})})
+      .withOptions({
+        bluemix: JSON.stringify({ name: PROJECT_NAME}),
+        framework: "None"
+      })
       .toPromise(); // Get a Promise back when the generator finishes
   });
 
@@ -162,9 +166,9 @@ describe('core-node-express:app integration test with custom bluemix', function 
       // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
     });
 
-    it('contains Bluemix badge', function () {
+    it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -188,7 +192,11 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
   before(function () {
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
-      .withOptions({bluemix: JSON.stringify({ name: PROJECT_NAME}), spec: JSON.stringify({port: common.defaultPort})})
+      .withOptions({
+        bluemix: JSON.stringify({ name: PROJECT_NAME}), 
+        spec: JSON.stringify({port: common.defaultPort}),
+        framework: "None"
+      })
       .toPromise(); // Get a Promise back when the generator finishes
   });
 
@@ -240,9 +248,9 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
       // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
     });
 
-    it('contains Bluemix badge', function () {
+    it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -320,9 +328,9 @@ describe('core-node-express:app integration test using prompts', function () {
       // TODO assert.fileContent(common.file.README_md, PROJECT_NAME);
     });
 
-    it('contains Bluemix badge', function () {
+    it('contains IBM Cloud badge', function () {
       assert.fileContent(common.fileSwagger.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -341,7 +349,7 @@ describe('core-node-express:app integration test using prompts', function () {
 });
 
 
-describe('core-node-express:app integration test chose service alert', function () {
+describe('core-node-express:app integration test chose service alert notification', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
   
@@ -357,7 +365,7 @@ describe('core-node-express:app integration test chose service alert', function 
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected alert notification files', function () {
       assert.file("server/services/service-alert-notification.js");
     });
   });
@@ -380,7 +388,7 @@ describe('core-node-express:app integration test chose service appid', function 
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected appid service files', function () {
       assert.file("server/services/service-appid.js");
     });
   });
@@ -403,7 +411,7 @@ describe('core-node-express:app integration test chose service cloudant', functi
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected cloudant service files', function () {
       assert.file("server/services/service-cloudant.js");
     });
   });
@@ -426,7 +434,7 @@ describe('core-node-express:app integration test chose service mongo', function 
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected mongo service files', function () {
       assert.file("server/services/service-mongodb.js");
     });
   });
@@ -449,7 +457,7 @@ describe('core-node-express:app integration test chose service object storage', 
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected object storage service files', function () {
       assert.file("server/services/service-object-storage.js");
     });
   });
@@ -472,7 +480,7 @@ describe('core-node-express:app integration test chose service postgre', functio
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected postgre service files', function () {
       assert.file("server/services/service-postgre.js");
     });
   });
@@ -495,7 +503,7 @@ describe('core-node-express:app integration test chose service push', function (
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected push service files', function () {
       assert.file("server/services/service-push.js");
     });
   });
@@ -518,7 +526,7 @@ describe('core-node-express:app integration test chose service redis', function 
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected redis service files', function () {
       assert.file("server/services/service-redis.js");
     });
   });
@@ -541,9 +549,10 @@ describe('core-node-express:app integration test chose service watson conversati
   });
   
   describe('basic file structure test', function () {
-    it('generates the expected application files', function () {
+    it('generates the expected watson service files', function () {
       assert.file("server/services/service-watson-conversation.js");
     });
   });
 
 });
+

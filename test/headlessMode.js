@@ -78,9 +78,9 @@ describe('Headless mode: app integration test with custom spec', function () {
   });
 
   describe(common.file.README_md, function () {
-    it('contains Bluemix badge', function () {
+    it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -152,9 +152,9 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
       assert.fileContent(common.file.README_md, "TEST_APP");
     });
 
-    it('contains Bluemix badge', function () {
+    it('contains Cloud badge', function () {
       assert.fileContent(common.fileSwagger.README_md,
-        '[![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
     });
   });
 
@@ -183,6 +183,34 @@ describe('Headless mode: app integration test chose service watson conversation'
   describe('basic file structure test', function () {
     it('generates the expected application files', function () {
       assert.file("server/services/service-watson-conversation.js");
+    });
+  });
+
+});
+
+describe('Headless mode: app integration test chose services redis and appid', function () {
+  // Express build is slow so we need to set a longer timeout for the test
+  this.timeout(150000);
+
+  before(function () {
+
+    // Mock the options, set up an output folder and run the generator
+    return helpers.run(path.join( __dirname, '../generators/app'))
+    .withOptions({
+      headless: JSON.stringify({name:'project', services: ["redis", "appid"]})
+    })
+      .toPromise(); // Get a Promise back when the generator finishes
+  });
+
+  describe('basic file structure test for redis service', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-redis.js");
+    });
+  });
+
+  describe('basic file structure test for appid service', function () {
+    it('generates the expected application files', function () {
+      assert.file("server/services/service-appid.js");
     });
   });
 

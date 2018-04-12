@@ -19,7 +19,7 @@ const Log4js = require('log4js');
 const logger = Log4js.getLogger("generator-nodeserver");
 const path = require('path');
 const fs = require('fs');
-const services= require('./services/services');
+const services = require('./services/services');
 
 const OPTION_BLUEMIX = 'bluemix';
 const OPTION_STARTER = 'starter';
@@ -28,12 +28,16 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    logger.level= "info";
+    logger.level = "info";
     logger.info("Package info ::", Bundle.name, Bundle.version);
 
-    if ( typeof this.options.bluemix == "undefined" ) {
+    if (typeof this.options.bluemix == "undefined") {
       // generate only for Node.js apps
-      this.opts = {bluemix: {backendPlatform: 'NODE'}, spec: {applicationType: 'WEB'}};
+      this.opts = {
+        bluemix: { backendPlatform: 'NODE' },
+        spec: { applicationType: 'WEB' },
+        framework: 'None'
+      };
     }
     else {
       this._sanitizeOption(this.options, OPTION_BLUEMIX);
@@ -42,7 +46,7 @@ module.exports = class extends Generator {
     }
 
     const headlessDesc = 'Run in headless mode (no prompts). Format --headless=\'{"name": "myproject"}\'"';
-    this.option('headless', {desc: headlessDesc, type: String});
+    this.option('headless', { desc: headlessDesc, type: String });
 
     /* Do this so there are no overwrite messages when
        subgenerators run. The overwrites are expected
@@ -55,22 +59,22 @@ module.exports = class extends Generator {
   }
 
   prompting() {
-    let swaggerFileValidator= function(str) {
-      if ( str == "None" ) {
+    let swaggerFileValidator = function (str) {
+      if (str == "None") {
         return true;
       }
       else {
-        if ( fs.existsSync(str.trim()) ) {
+        if (fs.existsSync(str.trim())) {
           return true;
         }
         else {
-          console.log("\n"+str+" not found.");
+          console.log("\n" + str + " not found.");
           return false;
         }
       }
     }
 
-    let choseCloudServices= function(answers) {
+    let choseCloudServices = function (answers) {
       return answers.addCloudServices;
     }
     // If headless mode don't prompt
@@ -120,7 +124,7 @@ module.exports = class extends Generator {
     }
   }
 
-  configuring() {}
+  configuring() { }
 
   _processAnswers(answers) {
     this.opts.bluemix.fromYo = true;
@@ -128,29 +132,28 @@ module.exports = class extends Generator {
     this.opts.bluemix.name = answers.name || this.opts.bluemix.name;
     answers.swaggerFileName = answers.swaggerFileName.trim();
 
-    if ( answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None" ) {
-      let swagger = fs.readFileSync(answers.swaggerFileName,"utf8");
-      this.opts.bluemix.openApiServers= [{"spec": swagger }];
+    if (answers.swaggerFileName.length > 0 && answers.swaggerFileName !== "None") {
+      let swagger = fs.readFileSync(answers.swaggerFileName, "utf8");
+      this.opts.bluemix.openApiServers = [{ "spec": swagger }];
     }
-
     this._processServices(answers);
     this._composeSubGenerators();
   }
 
   // store specified option in bluemix object to drive generator-ibm-service-enablement
   _storeServiceName(service) {
-    let service_name= services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
-    let service_data= require("./services/"+service_name);
-    this.opts.bluemix[service_name]= service_data[service_name];
+    let service_name = services.SERVICES[services.SERVICE_LABELS.indexOf(service)];
+    let service_data = require("./services/" + service_name);
+    this.opts.bluemix[service_name] = service_data[service_name];
     this.opts.bluemix.server.services.push(service_name.toUpperCase() + "_INSTANCE_REPLACE_ME");
   }
 
   // process each service selected by user
   _processServices(answers) {
-    if ( answers.services ) {
-      this.hasServices= true;
-      
-      if ( !("server" in this.opts.bluemix) ) {
+    if (answers.services) {
+      this.hasServices = true;
+
+      if (!("server" in this.opts.bluemix)) {
         this.opts.bluemix["server"] = []
       }
       let services = []
@@ -159,33 +162,47 @@ module.exports = class extends Generator {
       answers.services.forEach(this._storeServiceName.bind(this));
     }
     else {
-      this.hasServices= false;
+      this.hasServices = false;
     }
   }
 
   _composeSubGenerators() {
 
-    this.opts.bluemix.quiet= true; // suppress version messages
-
+    this.opts.bluemix.quiet = true; // suppress version messages
     if (process.env.YO_SUB_GEN_MODE === 'global') {
       // for develop-mode testing
       this.composeWith('ibm-core-node-express', this.opts);
+
+      this.composeWith('ibm-web', this.opts);
+
       this.composeWith('ibm-cloud-enablement', this.opts);
 
-      if ( this.hasServices ) {
+      if (this.hasServices) {
         this.composeWith('ibm-service-enablement', {
           bluemix: JSON.stringify(this.opts.bluemix),
           spec: JSON.stringify(this.opts.spec),
           starter: "{}",
-          quiet: true});
+          quiet: true
+        });
       }
     }
     else {
       const modDirName = __dirname + '/../../node_modules';
+
       this.composeWith(
         path.join(
           modDirName,
           'generator-ibm-core-node-express',
+          'app'
+        ),
+        this.opts
+      );
+
+      this.composeWith(
+        path.join(
+          modDirName,
+          'generator-ibm-web',
+          'generators',
           'app'
         ),
         this.opts
@@ -201,9 +218,9 @@ module.exports = class extends Generator {
         this.opts
       );
 
-      if ( this.hasServices ) {
+      if (this.hasServices) {
         this.composeWith(
-          path.join(modDirName,'generator-ibm-service-enablement','generators','app'),
+          path.join(modDirName, 'generator-ibm-service-enablement', 'generators', 'app'),
           {
             bluemix: JSON.stringify(this.opts.bluemix),
             spec: JSON.stringify(this.opts.spec),
@@ -215,13 +232,8 @@ module.exports = class extends Generator {
   }
 
   _sanitizeOption(options, name) {
-
-    try {
-      this.options[name] = typeof (this.options[name]) === 'string' ?
-        JSON.parse(this.options[name]) : this.options[name];
-    } catch (e) {
-      throw Error(`${name} parameter is expected to be a valid stringified JSON object`);
-    }
+    this.options[name] = typeof (this.options[name]) === 'string' ?
+      JSON.parse(this.options[name]) : this.options[name];
   }
 
 };

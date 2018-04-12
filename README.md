@@ -1,6 +1,6 @@
 # NodeServer Generator
 
-[![Bluemix powered][img-bluemix-powered]][url-bluemix]
+[![IBM Cloud powered][img-ibmcloud-powered]][url-bluemix]
 [![Travis][img-travis-master]][url-travis-master]
 [![Coveralls][img-coveralls-master]][url-coveralls-master]
 [![Codacy][img-codacy]][url-codacy]
@@ -9,7 +9,7 @@
 [![DownloadsTotal][img-npm-downloads-total]][url-npm]
 [![License][img-license]][url-npm]
 
-[img-bluemix-powered]: https://img.shields.io/badge/bluemix-powered-blue.svg
+[img-ibmcloud-powered]: https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg
 [url-bluemix]: http://bluemix.net
 [url-npm]: https://www.npmjs.com/package/generator-nodeserver
 [img-license]: https://img.shields.io/npm/l/generator-nodeserver.svg
@@ -124,13 +124,13 @@ yo nodeserver --headless='{"name":"your-app-name"}'
 
 To specify which services to add use:
 ```bash
-yo nodeserver --headless='{"service":["service1", "service2"]}'
+yo nodeserver --headless='{"services":["service1", "service2"]}'
 ```
 For valid services see below.
 
 Full usage:
 ```bash
-yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","service":["service1", "service2"]}'
+yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagger-file-name","services":["service1", "service2"]}'
 ```
 
 #### Valid Services
