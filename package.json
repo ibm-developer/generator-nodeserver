@@ -28,7 +28,7 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "eslint .",
-    "mocha": "nyc --reporter=lcov mocha --recursive -R xunit-file",
+    "mocha": "nyc --reporter=lcov mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json",
     "version": "standard-version",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -37,9 +37,10 @@
     "eslint": "^3.1.1",
     "eslint-plugin-ejs": "0.0.2",
     "mocha": "^3.2.0",
+    "mocha-multi-reporters": "^1.1.7",
     "nyc": "^10.3.0",
-    "xunit-file": "^1.0.0",
     "standard-version": "^4.3.0",
+    "xunit-file": "^1.0.0",
     "yeoman-assert": "^2.2.2",
     "yeoman-test": "^1.6.0"
   },
