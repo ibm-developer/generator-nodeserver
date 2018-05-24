@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -ex
 
 echo "Running pre-release checks and scans"
 CURRENT_PKG_VER=`node -e "console.log(require('./package.json').version);"`
@@ -23,4 +23,4 @@ npm run version
 git remote rm origin
 git remote add origin $GITHUB_URL_SECURED
 git push --follow-tags --set-upstream origin $BRANCH
-hub pull-request -b master -m "chore: Merging CHANGELOG and package.json changes"
+hub pull-request -b -f master -m "chore: Merging CHANGELOG and package.json changes"
