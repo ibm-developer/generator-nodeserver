@@ -134,7 +134,7 @@ yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagge
 ```
 
 #### Valid Services
-* 'alert'
+* 'alert notification'
 * 'appid'
 * 'cloudant'
 * 'mongo'
