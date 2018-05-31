@@ -57,7 +57,7 @@ describe('Headless mode: app integration test with custom spec', function () {
         "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
-          "node": "^6.9.0"
+          "node": "^8.11.1"
         },
         "scripts": {
           "start": "node server/server.js",
@@ -127,7 +127,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
         "description": "A generated IBM Cloud application",
         "private": true,
         "engines": {
-          "node": "^6.9.0"
+          "node": "^8.11.1"
         },
         "scripts": {
           "start": "node server/server.js",
