@@ -1,6 +1,6 @@
 # NodeServer Generator
 
-[![IBM Cloud powered][img-ibmcloud-powered]][url-bluemix]
+[![IBM Cloud powered][img-ibmcloud-powered]][url-cloud]
 [![Travis][img-travis-master]][url-travis-master]
 [![Coveralls][img-coveralls-master]][url-coveralls-master]
 [![Codacy][img-codacy]][url-codacy]
@@ -10,7 +10,7 @@
 [![License][img-license]][url-npm]
 
 [img-ibmcloud-powered]: https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg
-[url-bluemix]: http://bluemix.net
+[url-cloud]: http://bluemix.net
 [url-npm]: https://www.npmjs.com/package/generator-nodeserver
 [img-license]: https://img.shields.io/npm/l/generator-nodeserver.svg
 [img-version]: https://img.shields.io/npm/v/generator-nodeserver.svg
