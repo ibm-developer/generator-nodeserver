@@ -45,7 +45,7 @@ service sub-generator (e.g. service-alert-notification)
 
 const SERVICES= [ 
   "alertNotification",
-  "auth",
+  "appid",
   "cloudant",
   "mongodb",
   "objectStorage",

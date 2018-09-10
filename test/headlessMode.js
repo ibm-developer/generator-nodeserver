@@ -27,9 +27,9 @@ describe('Headless mode: app integration test with custom spec', function () {
 
   before(function () {
     // Mock the options, set up an output folder and run the generator
-    return helpers.run(path.join( __dirname, '../generators/app'))
+    return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
-        headless: JSON.stringify({name:'project'})
+        headless: JSON.stringify({ name: 'project' })
       })
       .toPromise(); // Get a Promise back when the generator finishes
   });
@@ -46,7 +46,7 @@ describe('Headless mode: app integration test with custom spec', function () {
 
   describe(common.file.local, function () {
     it('contains the custom port', function () {
-      assert.jsonFileContent(common.file.local, {port: common.defaultPort});
+      assert.jsonFileContent(common.file.local, { port: common.defaultPort });
     });
   });
 
@@ -64,7 +64,7 @@ describe('Headless mode: app integration test with custom spec', function () {
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"
@@ -73,7 +73,8 @@ describe('Headless mode: app integration test with custom spec', function () {
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
           "nyc": "^10.3.2"
-        }});
+        }
+      });
     });
   });
 
@@ -97,9 +98,9 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
 
   before(function () {
     // Mock the options, set up an output folder and run the generator
-    return helpers.run(path.join( __dirname, '../generators/app'))
+    return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
-        headless: JSON.stringify({name:'TEST_APP', swaggerFileName: __dirname+"/resources/person_dino.json"})
+        headless: JSON.stringify({ name: 'TEST_APP', swaggerFileName: __dirname + "/resources/person_dino.json" })
       })
       .toPromise(); // Get a Promise back when the generator finishes
   });
@@ -116,7 +117,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
 
   describe(common.fileSwagger.local, function () {
     it('contains the custom port', function () {
-      assert.jsonFileContent(common.fileSwagger.local, {port: common.defaultPort});
+      assert.jsonFileContent(common.fileSwagger.local, { port: common.defaultPort });
     });
   });
 
@@ -134,7 +135,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"
@@ -143,7 +144,8 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
           "chai": "^4.0.0",
           "mocha": "^3.4.2",
           "nyc": "^10.3.2"
-        }});
+        }
+      });
     });
   });
 
@@ -173,10 +175,10 @@ describe('Headless mode: app integration test chose service watson conversation'
   before(function () {
 
     // Mock the options, set up an output folder and run the generator
-    return helpers.run(path.join( __dirname, '../generators/app'))
-    .withOptions({
-      headless: JSON.stringify({name:'project', services: ["watson conversation"]})
-    })
+    return helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({
+        headless: JSON.stringify({ name: 'project', services: ["watson conversation"] })
+      })
       .toPromise(); // Get a Promise back when the generator finishes
   });
 
@@ -195,10 +197,10 @@ describe('Headless mode: app integration test chose services redis and appid', f
   before(function () {
 
     // Mock the options, set up an output folder and run the generator
-    return helpers.run(path.join( __dirname, '../generators/app'))
-    .withOptions({
-      headless: JSON.stringify({name:'project', services: ["redis", "appid"]})
-    })
+    return helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({
+        headless: JSON.stringify({ name: 'project', services: ["redis", "appid"] })
+      })
       .toPromise(); // Get a Promise back when the generator finishes
   });
 

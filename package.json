@@ -14,16 +14,16 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "fs-extra": "^2.0.0",
-    "generator-ibm-core-node-express": "^3.0.0",
-    "generator-ibm-web": "^1.0.0",
-    "generator-ibm-cloud-enablement": "^1.0.5",
-    "generator-ibm-service-enablement": "^1.3.3",
-    "handlebars": "^4.0.10",
-    "js-yaml": "^3.9.0",
-    "lodash": "^4.17.4",
-    "log4js": "^2.2.3",
-    "yeoman-generator": "^1.1.0"
+    "fs-extra": "^7.0.0",
+    "generator-ibm-cloud-enablement": "^1.2.2",
+    "generator-ibm-core-node-express": "^3.0.4",
+    "generator-ibm-service-enablement": "^2.5.1",
+    "generator-ibm-web": "^1.4.0",
+    "handlebars": "^4.0.12",
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.10",
+    "log4js": "^3.0.5",
+    "yeoman-generator": "^3.1.0"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha",
@@ -33,16 +33,16 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
-    "coveralls": "^2.13.1",
-    "eslint": "^3.1.1",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.5.0",
     "eslint-plugin-ejs": "0.0.2",
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "mocha-multi-reporters": "^1.1.7",
-    "nyc": "^10.3.0",
-    "standard-version": "^4.3.0",
+    "nyc": "^13.0.1",
+    "standard-version": "^4.4.0",
     "xunit-file": "^1.0.0",
-    "yeoman-assert": "^2.2.2",
-    "yeoman-test": "^1.6.0"
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.9.1"
   },
   "repository": "https://github.com/ibm-developer/generator-nodeserver"
 }
