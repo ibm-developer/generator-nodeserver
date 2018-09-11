@@ -67,7 +67,7 @@ describe('core-node-express:app integration test with custom spec', function () 
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"
@@ -148,7 +148,7 @@ describe('core-node-express:app integration test with custom bluemix', function 
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"
@@ -230,7 +230,7 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"
@@ -310,7 +310,7 @@ describe('core-node-express:app integration test using prompts', function () {
           "test": "nyc mocha"
         },
         "dependencies": {
-          "appmetrics-dash": "^3.3.2",
+          "appmetrics-dash": "^4.0.0",
           "body-parser": "^1.17.2",
           "express": "^4.15.3",
           "log4js": "^1.1.1"

@@ -1,5 +1,5 @@
 'use strict';
-let auth = {
+let appid = {
   "clientId": "auth-client-id",
   "oauthServerUrl": "https://appid-oauth.ng.bluemix.net/oauth/v3/auth-client-id",
   "profilesUrl": "https://appid-profiles.ng.bluemix.net",
@@ -12,4 +12,4 @@ let auth = {
     "plan": "auth-plan"
   }
 }
-exports.auth = auth;
+exports.appid = appid;
