@@ -181,7 +181,7 @@ module.exports = class extends Generator {
         this.composeWith('ibm-service-enablement', {
           bluemix: JSON.stringify(this.opts.bluemix),
           spec: JSON.stringify(this.opts.spec),
-          starter: "{}",
+          starter: JSON.stringify({ "applicationType": "WEB" }),
           quiet: true
         });
       }
@@ -224,7 +224,7 @@ module.exports = class extends Generator {
           {
             bluemix: JSON.stringify(this.opts.bluemix),
             spec: JSON.stringify(this.opts.spec),
-            starter: "{}",
+            starter: JSON.stringify({ "applicationType": "WEB" }),
             quiet: true
           });
       }
