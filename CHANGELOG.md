@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.6"></a>
+## [1.3.6](https://github.com/ibm-developer/generator-nodeserver/compare/v1.3.1...v1.3.6) (2018-10-24)
+
+
+### Bug Fixes
+
+* Starter option ([#66](https://github.com/ibm-developer/generator-nodeserver/issues/66)) ([7f4b962](https://github.com/ibm-developer/generator-nodeserver/commit/7f4b962))
+
+
+
 <a name="1.3.5"></a>
 ## [1.3.5](https://github.com/ibm-developer/generator-nodeserver/compare/v1.3.1...v1.3.5) (2018-09-11)
 
