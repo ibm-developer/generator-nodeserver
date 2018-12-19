@@ -148,7 +148,7 @@ yo nodeserver --headless='{"name":"your-app-name","swaggerFileName":"your-swagge
 
 Build your generated project one of two ways:
 
-1. Normal, `npm install`, `npm start`  
+1. Natively, using `npm install` and `npm start`  
 1. Containerized, using [IBM Cloud Developer Tools](https://github.com/IBM-Bluemix/ibm-cloud-developer-tools)
 
     Note that a containerized approach is supported through the tooling in special consideration of Kubernetes as a deployment environment, following the dev/prod parity principle of [12 Factor Apps](https://12factor.net/).
@@ -157,9 +157,7 @@ Build your generated project one of two ways:
 
     1. `npm install`
 
-    1. `npm run idt:install`
-
-        Installs IBM Cloud Developer Tools.
+    1. Install [IBM Cloud Developer Tools](https://cloud.ibm.com/docs/cli/index.html#overview).
 
     1. `npm run idt:build`
 
@@ -233,7 +231,7 @@ Deploy to Kubernetes using Helm or the IBM Cloud Developer Tools.
     1. The helm command installs to the Kubernetes environment pointed to by the KUBECONFIG environment variable. Make sure you are in configuration mode for your Kubernetes cluster.
 
     1. The Helm command is installed when you install the IBM Cloud Developer Tools, which you can install for your project by running `npm run idt:install`.
-    
+
     1. To delete the helm deployment, execute `helm del --purge <release name>`.
 
 1. IBM Cloud Developer Tools
