@@ -11,8 +11,13 @@ before_script:
 - mv hub-linux-386-2.5.1 hub
 - export PATH=${PATH}:/tmp/hub/bin
 - git clone -b master https://github.com/ibm-developer/standard-npm-devops.git
+- npm --prefix ./standard-npm-devops install fs-extra bluebird
 - cd -
-script: npm test && npm run coveralls && /tmp/standard-npm-devops/do_devops.sh
+script:
+  - npm run lint || travis_terminate 1
+  - npm test || travis_terminate 1
+  - npm run coveralls || travis_terminate 1
+  - /tmp/standard-npm-devops/do_devops.sh
 branches:
   only:
   - master
