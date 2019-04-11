@@ -60,19 +60,19 @@ describe('Headless mode: app integration test with custom spec', function () {
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }
       });
     });
@@ -81,7 +81,7 @@ describe('Headless mode: app integration test with custom spec', function () {
   describe(common.file.README_md, function () {
     it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 
@@ -131,19 +131,19 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }
       });
     });
@@ -156,7 +156,7 @@ describe('Headless mode: app integration test using headless mode (with Swagger 
 
     it('contains Cloud badge', function () {
       assert.fileContent(common.fileSwagger.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 

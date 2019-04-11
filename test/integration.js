@@ -63,19 +63,19 @@ describe('core-node-express:app integration test with custom spec', function () 
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }});
     });
   });
@@ -87,7 +87,7 @@ describe('core-node-express:app integration test with custom spec', function () 
 
     it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 
@@ -144,19 +144,19 @@ describe('core-node-express:app integration test with custom bluemix', function 
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }});
     });
   });
@@ -168,7 +168,7 @@ describe('core-node-express:app integration test with custom bluemix', function 
 
     it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 
@@ -193,7 +193,7 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withOptions({
-        bluemix: JSON.stringify({ name: PROJECT_NAME}), 
+        bluemix: JSON.stringify({ name: PROJECT_NAME}),
         spec: JSON.stringify({port: common.defaultPort}),
         framework: "None"
       })
@@ -226,19 +226,19 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }});
     });
   });
@@ -250,7 +250,7 @@ describe('core-node-express:app integration test with custom bluemix and spec', 
 
     it('contains IBM Cloud badge', function () {
       assert.fileContent(common.file.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 
@@ -306,19 +306,19 @@ describe('core-node-express:app integration test using prompts', function () {
           "node": "^8.11.1"
         },
         "scripts": {
-          "start": "node server/server.js",
-          "test": "nyc mocha"
+          "start": "node $npm_package_config_entrypoint",
+          "test": "nyc mocha --exit"
         },
         "dependencies": {
-          "appmetrics-dash": "^4.0.0",
-          "body-parser": "^1.17.2",
-          "express": "^4.15.3",
-          "log4js": "^1.1.1"
+          "appmetrics-dash": "^4.1.0",
+          "body-parser": "^1.18.3",
+          "express": "^4.16.4",
+          "log4js": "^4.0.2"
         },
         "devDependencies": {
-          "chai": "^4.0.0",
-          "mocha": "^3.4.2",
-          "nyc": "^10.3.2"
+          "chai": "^4.2.0",
+          "mocha": "^6.0.0",
+          "nyc": "^13.3.0"
         }});
     });
   });
@@ -330,7 +330,7 @@ describe('core-node-express:app integration test using prompts', function () {
 
     it('contains IBM Cloud badge', function () {
       assert.fileContent(common.fileSwagger.README_md,
-        '[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)');
+        '[![](https://img.shields.io/badge/IBM_Cloud-powered-blue.svg)](https://cloud.ibm.com)');
     });
   });
 
@@ -352,18 +352,18 @@ describe('core-node-express:app integration test using prompts', function () {
 describe('core-node-express:app integration test chose service alert notification', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
         name: "TEST_APP",
         addCloudServices: "true",
-        services: [ "alert notification" ] }) 
+        services: [ "alert notification" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected alert notification files', function () {
       assert.file("server/services/service-alert-notification.js");
@@ -375,9 +375,9 @@ describe('core-node-express:app integration test chose service alert notificatio
 describe('core-node-express:app integration test chose service appid', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -386,7 +386,7 @@ describe('core-node-express:app integration test chose service appid', function 
         services: [ "appid" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected appid service files', function () {
       assert.file("server/services/service-appid.js");
@@ -398,9 +398,9 @@ describe('core-node-express:app integration test chose service appid', function 
 describe('core-node-express:app integration test chose service cloudant', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -409,7 +409,7 @@ describe('core-node-express:app integration test chose service cloudant', functi
         services: [ "cloudant" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected cloudant service files', function () {
       assert.file("server/services/service-cloudant.js");
@@ -421,9 +421,9 @@ describe('core-node-express:app integration test chose service cloudant', functi
 describe('core-node-express:app integration test chose service mongo', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -432,7 +432,7 @@ describe('core-node-express:app integration test chose service mongo', function 
         services: [ "mongo" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected mongo service files', function () {
       assert.file("server/services/service-mongodb.js");
@@ -444,9 +444,9 @@ describe('core-node-express:app integration test chose service mongo', function 
 describe('core-node-express:app integration test chose service object storage', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -455,7 +455,7 @@ describe('core-node-express:app integration test chose service object storage', 
         services: [ "object storage" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected object storage service files', function () {
       assert.file("server/services/service-object-storage.js");
@@ -467,9 +467,9 @@ describe('core-node-express:app integration test chose service object storage', 
 describe('core-node-express:app integration test chose service postgre', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -478,7 +478,7 @@ describe('core-node-express:app integration test chose service postgre', functio
         services: [ "postgre" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected postgre service files', function () {
       assert.file("server/services/service-postgre.js");
@@ -490,9 +490,9 @@ describe('core-node-express:app integration test chose service postgre', functio
 describe('core-node-express:app integration test chose service push', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -501,7 +501,7 @@ describe('core-node-express:app integration test chose service push', function (
         services: [ "push" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected push service files', function () {
       assert.file("server/services/service-push.js");
@@ -513,9 +513,9 @@ describe('core-node-express:app integration test chose service push', function (
 describe('core-node-express:app integration test chose service redis', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -524,7 +524,7 @@ describe('core-node-express:app integration test chose service redis', function 
         services: [ "redis" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected redis service files', function () {
       assert.file("server/services/service-redis.js");
@@ -536,9 +536,9 @@ describe('core-node-express:app integration test chose service redis', function 
 describe('core-node-express:app integration test chose service watson conversation', function () {
   // Express build is slow so we need to set a longer timeout for the test
   this.timeout(150000);
-  
+
   before(function () {
-      
+
     // Mock the options, set up an output folder and run the generator
     return helpers.run(path.join( __dirname, '../generators/app'))
       .withPrompts({
@@ -547,7 +547,7 @@ describe('core-node-express:app integration test chose service watson conversati
         services: [ "watson conversation" ] })
       .toPromise(); // Get a Promise back when the generator finishes
   });
-  
+
   describe('basic file structure test', function () {
     it('generates the expected watson service files', function () {
       assert.file("server/services/service-watson-conversation.js");
@@ -555,4 +555,3 @@ describe('core-node-express:app integration test chose service watson conversati
   });
 
 });
-
