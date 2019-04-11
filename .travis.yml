@@ -14,13 +14,23 @@ before_script:
 - npm --prefix ./standard-npm-devops install fs-extra bluebird
 - cd -
 script:
-  - npm run lint || travis_terminate 1
-  - npm test || travis_terminate 1
-  - npm run coveralls || travis_terminate 1
-  - /tmp/standard-npm-devops/do_devops.sh
+- npm run lint || travis_terminate 1
+- npm test || travis_terminate 1
+- npm run coveralls || travis_terminate 1
+- /tmp/standard-npm-devops/do_devops.sh
+- if [ -z $TRAVIS_PULL_REQUEST_BRANCH ]; then $DEVOPS_SCRIPT_DIR/do_devops_insights_reporting.sh; fi
 branches:
   only:
   - master
   - develop
 env:
-  - DEV_BRANCH=develop PROD_BRANCH=master DEVOPS_SCRIPT_DIR="/tmp/standard-npm-devops"
+  global:
+    - DEV_BRANCH=develop 
+    - PROD_BRANCH=master 
+    - DEVOPS_SCRIPT_DIR="/tmp/standard-npm-devops"
+    # below are idra's necessary environment variables to report to devops-insights
+    # IBM_CLOUD_API_KEY and TOOLCHAIN_ID need to be defined from travis GUI
+    - ORGANIZATION_NAME=devops-insights
+    - LOGICAL_APP_NAME=generator-nodeserver
+    - GIT_URL=https://github.com/ibm-developer/generator-nodeserver
+    - DEVOPS_REPORT_DIR=/tmp/devops_insights/
