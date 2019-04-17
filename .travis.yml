@@ -18,7 +18,7 @@ script:
 - npm test || travis_terminate 1
 - npm run coveralls || travis_terminate 1
 - /tmp/standard-npm-devops/do_devops.sh
-- if [ -z $TRAVIS_PULL_REQUEST_BRANCH ]; then $DEVOPS_SCRIPT_DIR/do_devops_insights_reporting.sh; fi
+- $DEVOPS_SCRIPT_DIR/do_devops_insights_reporting.sh
 branches:
   only:
   - master

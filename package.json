@@ -29,6 +29,7 @@
     "test": "npm run lint && npm run mocha",
     "lint": "eslint .",
     "mocha": "nyc --reporter=lcov mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json",
+    "testinsights": "npm run mocha",
     "version": "standard-version",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
