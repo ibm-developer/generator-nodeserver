@@ -19,9 +19,9 @@
     "generator-ibm-core-node-express": "^3.1.2",
     "generator-ibm-service-enablement": "^3.3.2",
     "generator-ibm-web": "^1.4.10",
-    "handlebars": "^4.1.1",
-    "js-yaml": "^3.13.0",
-    "lodash": "^4.17.11",
+    "handlebars": "^4.1.2",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.15",
     "log4js": "^3.0.5",
     "yeoman-generator": "^3.2.0"
   },
