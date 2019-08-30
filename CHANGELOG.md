@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.9"></a>
+## [1.3.9](https://github.com/ibm-developer/generator-nodeserver/compare/v1.3.8...v1.3.9) (2019-08-28)
+
+
+### Bug Fixes
+
+* npm audit dependencies ([68b5b21](https://github.com/ibm-developer/generator-nodeserver/commit/68b5b21))
+* npm audit dependencies ([a12e320](https://github.com/ibm-developer/generator-nodeserver/commit/a12e320))
+
+
+
 <a name="1.3.8"></a>
 ## [1.3.8](https://github.com/ibm-developer/generator-nodeserver/compare/v1.3.7...v1.3.8) (2019-02-21)
 

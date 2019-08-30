@@ -3,7 +3,7 @@ let push = {
   "appGuid": "push-app-guid",
   "appSecret": "push-app-secret",
   "clientSecret": "push-client-secret",
-  "url":"http://imfpush.BLUEMIX_REGION.bluemix.net/imfpush/v1/apps/APP_GUID",
+  "url":"https://imfpush.BLUEMIX_REGION.bluemix.net/imfpush/v1/apps/APP_GUID",
   "serviceInfo": {
     "label": "push-label",
     "name": "push-name",
