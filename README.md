@@ -1,3 +1,10 @@
+# WARNING: This repository is no longer maintained :warning:
+
+> The generated content is now available in our [Node.js static application](https://github.com/IBM/node-express-app).
+
+> This repository will not be updated. The repository will be kept available in read-only mode.
+
+
 # NodeServer Generator
 
 [![IBM Cloud powered][img-ibmcloud-powered]][url-cloud]
